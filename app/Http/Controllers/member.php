@@ -13,8 +13,8 @@ class member extends Controller
 {
     public function test(){
         //return view('master');
-        //return Session::get('username');
-        return Datatables::of(DB::table('account'))->make(true);
+        return Session::get('userid');
+        // return Datatables::of(DB::table('account'))->make(true);
     }
 
     public function getLogin(){
@@ -28,6 +28,7 @@ class member extends Controller
           Session::put('admin', true);
         }
         Session::put('username', $request->input('inputUsername'));
+        Session::put('userid', $user->id);
         return redirect()
               ->route('main');
       }else{

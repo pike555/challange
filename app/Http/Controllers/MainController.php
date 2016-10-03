@@ -11,30 +11,35 @@ use App\Http\Requests\RoleRequest;
 class MainController extends Controller
 {
     public function getMain(){
-      $user = DB::table('account')->where('username', Session::get('username'))->first();
-      $role = explode(",", $user->role);
-      //return $role;
-      //return is_array((array)$user->role)? 'yes':'no' ;
-      if($role[0] == 0){
+      $user = DB::table('account_all')->select('role_id')->where('username', Session::get('username'))->get();
+      // $role = explode(",", $user->role);
+      if($user[0]->role_id == 0){
         $announces = DB::table('announce')->get();
       }else{
-        $announces = DB::table('announce')->whereIn('role',$role)->orWhere('role','0')->get();
+        // $announces = DB::table('announce_all')->whereIn('role',$role)->orWhere('role','0')->get();
+        $announces = DB::select('select id,title,content,img from announce_all where role_id in (SELECT role_id FROM `account_all` where username = ?) or role_id = 0 group by id,title,content,img',[Session::get('username')]);
       }
-      // return $announces;
       return view('main',['announces'=>$announces])->with('navMain',true);
     }
     public function getRole(){
       $roles = DB::table('role')->get();
-      $user = DB::table('account')->where('username',Session::get('username'))->first();
-      $selectRoles = explode(",", $user->role);
+      $selectRoles = DB::table('account_all')->select('role_id')->where('username',Session::get('username'))->get();
+      // $selectRoles = explode(",", $user->role);
       return view('role',['roles'=>$roles,'selectRoles'=>$selectRoles])->with('navRole',true);
     }
     public function postRole(RoleRequest $request){
-      //return implode(",",$request->input('inputRole'));
+      DB::table('account_role')->where('acc_id',Session::get('userid'))->delete();
       if($request->input('inputAllrole') == "on"){
-        DB::table('account')->where('username',Session::get('username'))->update(['role'=>'0']);
+        //DB::table('account_role')->where('username',Session::get('username'))->update(['role'=>'0']);
+        DB::table('account_role')->where('username',Session::get('username'))->insert(['acc_id'=>Session::get('userid'),'role_id'=>'0']);
       }else{
-        DB::table('account')->where('username',Session::get('username'))->update(['role'=>implode(",",$request->input('inputRole'))]);
+        //DB::table('account_role')->where('username',Session::get('username'))->insert(['role'=>implode(",",$request->input('inputRole'))]);
+        foreach($request->input('inputRole') as $key => $role){
+          $data[$key]["acc_id"] = Session::get('userid');
+          $data[$key]["role_id"] = $role;
+        }
+        //return $data;
+        DB::table('account_role')->where('acc_id',Session::get('userid'))->insert($data);
       }
       return redirect()->route('main');
     }
