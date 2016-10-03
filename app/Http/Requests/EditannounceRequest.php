@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddannounceRequest extends FormRequest
+class EditannounceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class AddannounceRequest extends FormRequest
     public function rules()
     {
         return [
-            'inputTitle'=>'required',
-            'inputContent'=>'required',
-            'inputImg'=>'required',
-            'inputRole'=>'required_without_all:inputRole,inputAllrole',
+          'inputTitle'=>'required',
+          'inputContent'=>'required',
+          'inputRole'=>'required_without_all:inputRole,inputAllrole',
         ];
     }
 }

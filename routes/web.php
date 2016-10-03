@@ -25,7 +25,7 @@ Route::group(['middleware'=>['checkuser']],function(){
     Route::get('/announce/add','AdminController@getAdd')->name('addannounce');
     Route::post('/announce/add','AdminController@postAdd');
     Route::get('/announce/edit/{id?}','AdminController@getEdit')->name('editannounce');
-    // Route::post('/add-announce','AdminController@postAdd');
+    Route::post('/announce/edit/{id?}','AdminController@postEdit');
     Route::any('/announce/delete/{id?}','AdminController@Delete')->name('deleteannounce');
   });
 

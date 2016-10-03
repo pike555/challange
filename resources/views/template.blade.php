@@ -30,15 +30,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Challence</a>
+            <a class="navbar-brand" href="{{ route('main') }}">Challence</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="{{ isset($navMain) ? 'active':'' }}"><a href="{{ route('main') }}">Main</a></li>
-                <li class="{{ isset($navRole) ? 'active':'' }}"><a href="{{ route('role') }}">Role</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
               @if(Session::has('admin'))
                 <li><a href="{{ route('announce') }}">Admin Tool</a></li>
@@ -46,6 +42,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
+                    <li><a href="{{ route('role') }}">Role</a></li>
                     <li><a href="{{ url('logout') }}">Logout</a></li>
                   </ul>
                 </li>
@@ -58,7 +55,7 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>

@@ -34,7 +34,7 @@
                           {{$announce->content}}
                         </td>
                         <td>
-                          <img src="{{$announce->img}}" style="width:50px;height:50px;">
+                          <img src="{{URL::asset('uploads').'/'.$announce->img}}" style="width:50px;height:50px;">
                         </td>
                         <td>
                           <a href="{{route('editannounce').'/'.$announce->id}}"><span class="label label-warning">Edit</span></a>

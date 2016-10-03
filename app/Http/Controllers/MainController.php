@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use DB;
 
-use App\Http\Requests;
+use App\Http\Requests\RoleRequest;
 
 class MainController extends Controller
 {
@@ -25,9 +25,11 @@ class MainController extends Controller
     }
     public function getRole(){
       $roles = DB::table('role')->get();
-      return view('role',['roles'=>$roles])->with('navRole',true);
+      $user = DB::table('account')->where('username',Session::get('username'))->first();
+      $selectRoles = explode(",", $user->role);
+      return view('role',['roles'=>$roles,'selectRoles'=>$selectRoles])->with('navRole',true);
     }
-    public function postRole(Request $request){
+    public function postRole(RoleRequest $request){
       //return implode(",",$request->input('inputRole'));
       if($request->input('inputAllrole') == "on"){
         DB::table('account')->where('username',Session::get('username'))->update(['role'=>'0']);

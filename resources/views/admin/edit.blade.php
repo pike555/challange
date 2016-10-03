@@ -28,7 +28,7 @@
                   <div class="form-group {{ $errors->first('inputImg') ? 'has-error':'' }}">
                     <label for="inputPassword" class="col-lg-2 control-label">Image</label>
                     <div class="col-lg-10">
-                        <input type="file" class="form-control" name="inputImg" id="inputImg" accept=".jpg" onchange="readURL(this);">
+                        <input type="file" class="form-control" name="inputImg" id="inputImg" accept=".jpg" onchange="readURL(this);" value="test">
                         <img src="{{URL::asset('uploads').'/'.$announce->img}}" id="blah" style="width:150px;height:150px;">
                     </div>
                   </div>
@@ -37,14 +37,16 @@
                     <div class="col-lg-10">
                       <select class="form-control" multiple="multiple" size="5" name="inputRole[]">
                         @foreach ($roles as $role)
-
-                          <option value="{{$role->id}}" >{{$role->name}}</option>
-                          
+                          <option value="{{$role->id}}"
+                            @foreach ($selectRoles as $selectRole)
+                              {{$selectRole==$role->id?'selected':''}}
+                            @endforeach
+                          >{{$role->name}}</option>
                         @endforeach
                       </select>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="inputAllrole"> All Role
+                          <input type="checkbox" name="inputAllrole" {{$selectRoles[0]==0?'checked':''}}> All Role
                         </label>
                       </div>
                     </div>

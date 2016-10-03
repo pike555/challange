@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 
 use App\Http\Requests\AddannounceRequest;
+use App\Http\Requests\EditannounceRequest;
 
 class AdminController extends Controller
 {
@@ -42,7 +43,22 @@ class AdminController extends Controller
       $roles = DB::table('role')->get();
       $announce = DB::table('announce')->where('id',$id)->first();
       //return $announce->title;
-      // $selectRoles = explode(",", $announce->role);
-      return view('admin.edit',['announce'=>$announce])->with('roles',$roles);
+      $selectRoles = explode(",", $announce->role);
+      //return $selectRoles;
+      return view('admin.edit',['announce'=>$announce,'selectRoles'=>$selectRoles])->with('roles',$roles);
+    }
+    public function postEdit(EditannounceRequest $request){
+      if ($request->file('inputImg')) {
+        $destinationPath = 'uploads'; // upload path
+        $extension = $request->file('inputImg')->getClientOriginalExtension(); // getting image extension
+        $request->file('inputImg')->move($destinationPath, $request->input('inputId').'.'.$extension);
+      }
+      if($request->input('inputAllrole') == "on"){
+        $role = 0;
+      }else{
+        $role = implode(",",$request->input('inputRole'));
+      }
+      DB::table('announce')->where('id',$request->input('inputId'))->update(['title'=>$request->input('inputTitle'), 'content'=>$request->input('inputContent'), 'img'=>$request->input('inputId').'.jpg', 'role'=>$role]);
+      return redirect()->route('announce');
     }
 }

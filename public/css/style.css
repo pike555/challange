@@ -4,3 +4,6 @@
 .bg-a{
     background: #222222;
 }
+p{
+  word-wrap:break-word;
+}

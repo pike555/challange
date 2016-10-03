@@ -5,7 +5,7 @@
       @foreach ($announces as $announce)
       <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="thumbnail">
-          <img src="{{$announce->img}}" alt="100x200">
+          <img src="{{URL::asset('uploads').'/'.$announce->img}}" alt="100x200">
           <div class="caption">
               <h3>{{$announce->title}}</h3>
               <p>{{$announce->content}}</p>

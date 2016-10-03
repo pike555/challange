@@ -12,12 +12,16 @@
                 <div class="col-lg-10">
                   <select class="form-control" multiple="multiple" size="5" name="inputRole[]">
                     @foreach ($roles as $role)
-                      <option value="{{$role->id}}" selected="">{{$role->name}}</option>
+                      <option value="{{$role->id}}"
+                        @foreach ($selectRoles as $selectRole)
+                          {{$selectRole==$role->id?'selected':''}}
+                        @endforeach
+                      >{{$role->name}}</option>
                     @endforeach
                   </select>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" name="inputAllrole"> All Role
+                      <input type="checkbox" name="inputAllrole" {{$selectRoles[0]==0?'checked':''}}> All Role
                     </label>
                   </div>
                 </div>

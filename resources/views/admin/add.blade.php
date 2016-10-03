@@ -16,13 +16,13 @@
                   <div class="form-group {{ $errors->first('inputTitle') ? 'has-error':'' }}">
                     <label for="inputEmail" class="col-lg-2 control-label">Title</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="inputTitle" id="inputTitle"  placeholder="Title" value="">
+                        <input type="text" class="form-control" name="inputTitle" id="inputTitle"  placeholder="Title" value="{{old('inputTitle')}}">
                     </div>
                   </div>
                   <div class="form-group {{ $errors->first('inputContent') ? 'has-error':'' }}">
                     <label for="inputPassword" class="col-lg-2 control-label">Content</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="inputContent" name="inputContent" placeholder="Content"></textarea>
+                        <textarea class="form-control" rows="3" id="inputContent" name="inputContent" placeholder="Content">{{old('inputContent')}}</textarea>
                     </div>
                   </div>
                   <div class="form-group {{ $errors->first('inputImg') ? 'has-error':'' }}">
