@@ -22,7 +22,7 @@ class member extends Controller
     }
 
     public function postLogin(LoginRequest $request){
-      $user = DB::table('account')->where([['username', $request->input('inputUsername')],['password',$request->input('inputPassword')]])->first();
+      $user = DB::table('account')->where([['username', $request->input('inputUsername')],['password',md5($request->input('inputPassword'))]])->first();
       if($user){
         if($user->admin){
           Session::put('admin', true);

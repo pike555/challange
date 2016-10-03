@@ -2,7 +2,7 @@
 
 @section('main')
   <div class="row">
-      <div class="col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
+      <div class="col-xs-12">
         <div class="panel panel-default">
           <div class="panel-body">
             <form class="form-horizontal" method="post">
@@ -18,10 +18,10 @@
                   <table class="table table-striped table-hover ">
                     <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Content</th>
-                        <th>Img</th>
-                        <th>Action</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-6">Content</th>
+                        <th class="col-xs-2">Img</th>
+                        <th class="col-xs-2">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,4 @@
         </div>
       </div>
   </div>
-  <script type="text/javascript">
-    $(".table").datatable();
-  </script>
 @endsection

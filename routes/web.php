@@ -32,4 +32,5 @@ Route::group(['middleware'=>['checkuser']],function(){
   Route::get('/main','MainController@getMain')->name('main');
   Route::get('/role','MainController@getRole')->name('role');
   Route::post('/role','MainController@postRole');
+  Route::get('/{id?}','MainController@getAnnounce')->name('showannounce');
 });

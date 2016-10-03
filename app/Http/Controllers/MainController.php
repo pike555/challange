@@ -42,4 +42,9 @@ class MainController extends Controller
       }
       return redirect()->route('main');
     }
+    public function getAnnounce($id){
+      $announce = DB::table('announce')->where('id',$id)->first();
+      //return $announce;
+      return view('announce',['announce'=>$announce]);
+    }
 }

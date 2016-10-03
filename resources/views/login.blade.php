@@ -32,7 +32,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group {{ $errors->first('inputUsername') ? 'has-error':'' }}">
-                  <label for="inputEmail" class="col-lg-2 control-label">Username</label>
+                  <label for="inputUsername" class="col-lg-2 control-label">Username</label>
                   <div class="col-lg-10">
                       <input type="text" class="form-control" name="inputUsername" id="inputUsername" placeholder="Username" value="{{old('inputUsername')}}">
                   </div>

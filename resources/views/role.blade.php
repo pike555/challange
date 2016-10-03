@@ -8,7 +8,7 @@
               <legend>Change Role</legend>
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <div class="form-group {{ $errors->first('inputRole') ? 'has-error':'' }}">
-                <label for="inputEmail" class="col-lg-2 control-label">Title</label>
+                <label for="inputRole" class="col-lg-2 control-label">Title</label>
                 <div class="col-lg-10">
                   <select class="form-control" multiple="multiple" size="5" name="inputRole[]">
                     @foreach ($roles as $role)

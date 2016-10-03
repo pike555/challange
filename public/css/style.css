@@ -4,6 +4,9 @@
 .bg-a{
     background: #222222;
 }
-p{
+p,td{
   word-wrap:break-word;
+}
+table{
+  table-layout: fixed;
 }
