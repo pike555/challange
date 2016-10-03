@@ -8,8 +8,11 @@
     <title>Admin Tool</title>
 
     <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/style-bootstrap.css')}}" rel="stylesheet">
+    <!-- <link href="{{URL::asset('css/style-table.css')}}" rel="stylesheet"> -->
+    <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +39,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('main') }}">Main</a></li>
-                <li><a href="{{ url('logout') }}">Logout</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ url('logout') }}">Logout</a></li>
+                  </ul>
+                </li>
             </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -45,8 +53,10 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{URL::asset('/bootstrap/js/bootstrap.min.js')}}"></script>
+
+
   </body>
 </html>

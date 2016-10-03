@@ -22,11 +22,11 @@ Route::any('/logout','member@Logout')->name('logout');
 Route::group(['middleware'=>['checkuser']],function(){
   Route::group(['middleware'=>['checkadmin']],function(){
     Route::get('/announce','AdminController@getMain')->name('announce');
-    Route::get('/add-announce','AdminController@getAdd')->name('addannounce');
+    Route::get('/announce/add','AdminController@getAdd')->name('addannounce');
+    Route::post('/announce/add','AdminController@postAdd');
+    Route::get('/announce/edit/{id?}','AdminController@getEdit')->name('editannounce');
     // Route::post('/add-announce','AdminController@postAdd');
-    // Route::get('/edit-announce','AdminController@getEdit')->name('editannounce');
-    // Route::post('/add-announce','AdminController@postAdd');
-    // Route::any('/delete-announce','AdminController@getEdit')->name('deleteannounce');
+    Route::any('/announce/delete/{id?}','AdminController@Delete')->name('deleteannounce');
   });
 
   Route::get('/main','MainController@getMain')->name('main');

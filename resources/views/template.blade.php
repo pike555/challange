@@ -8,8 +8,9 @@
     <title>Challence</title>
 
     <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/style-bootstrap.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,9 +41,15 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               @if(Session::has('admin'))
-                <li><a href="{{ route('addannounce') }}">Admin Tool</a></li>
+                <li><a href="{{ route('announce') }}">Admin Tool</a></li>
               @endif
-                <li><a href="{{ url('logout') }}">Logout</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{Session::get('username')}}<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ url('logout') }}">Logout</a></li>
+                  </ul>
+                </li>
+
             </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

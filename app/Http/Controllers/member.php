@@ -7,12 +7,14 @@ use DB;
 use Session;
 
 use App\Http\Requests\LoginRequest;
+use Yajra\Datatables\Facades\Datatables;
 
 class member extends Controller
 {
     public function test(){
         //return view('master');
-        return Session::get('username');
+        //return Session::get('username');
+        return Datatables::of(DB::table('account'))->make(true);
     }
 
     public function getLogin(){

@@ -12,23 +12,24 @@
                       </div>
                   @endif
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                  <input type="hidden" name="inputId" value="{{ $announce->id }}">
                   <div class="form-group {{ $errors->first('inputTitle') ? 'has-error':'' }}">
                     <label for="inputEmail" class="col-lg-2 control-label">Title</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="inputTitle" id="inputTitle"  placeholder="Title" value="">
+                        <input type="text" class="form-control" name="inputTitle" id="inputTitle"  placeholder="Title" value="{{$announce->title}}">
                     </div>
                   </div>
                   <div class="form-group {{ $errors->first('inputContent') ? 'has-error':'' }}">
                     <label for="inputPassword" class="col-lg-2 control-label">Content</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="inputContent" name="inputContent" placeholder="Content"></textarea>
+                        <textarea class="form-control" rows="3" id="inputContent" name="inputContent" placeholder="Content">{{$announce->content}}</textarea>
                     </div>
                   </div>
                   <div class="form-group {{ $errors->first('inputImg') ? 'has-error':'' }}">
                     <label for="inputPassword" class="col-lg-2 control-label">Image</label>
                     <div class="col-lg-10">
-                        <input type="file" class="form-control" name="inputImg" id="inputImg" accept=".jpg">
+                        <input type="file" class="form-control" name="inputImg" id="inputImg" accept=".jpg" onchange="readURL(this);">
+                        <img src="{{URL::asset('uploads').'/'.$announce->img}}" id="blah" style="width:150px;height:150px;">
                     </div>
                   </div>
                   <div class="form-group {{ $errors->first('inputRole') ? 'has-error':'' }}">
@@ -36,7 +37,9 @@
                     <div class="col-lg-10">
                       <select class="form-control" multiple="multiple" size="5" name="inputRole[]">
                         @foreach ($roles as $role)
-                          <option value="{{$role->id}}" selected="">{{$role->name}}</option>
+
+                          <option value="{{$role->id}}" >{{$role->name}}</option>
+                          
                         @endforeach
                       </select>
                       <div class="checkbox">
@@ -56,4 +59,19 @@
             </form>
       </div>
   </div>
+  <script type="text/javascript">
+    function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                  $('#blah')
+                      .attr('src', e.target.result)
+                      .width(150)
+                      .height(150);
+              };
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+  </script>
 @endsection

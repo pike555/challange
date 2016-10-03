@@ -2,23 +2,16 @@
 
 @section('main')
   <div class="row">
+      @foreach ($announces as $announce)
       <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="thumbnail">
-          <img src="img/img1.jpg" alt="100x200">
+          <img src="{{$announce->img}}" alt="100x200">
           <div class="caption">
-              <h3>announce title</h3>
-              <p>announce content.......</p>
+              <h3>{{$announce->title}}</h3>
+              <p>{{$announce->content}}</p>
           </div>
           </div>
       </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-          <div class="thumbnail">
-          <img src="img/img2.jpg" alt="100x200">
-          <div class="caption">
-              <h3>announce title</h3>
-              <p>announce content.......</p>
-          </div>
-          </div>
-      </div>
+      @endforeach
   </div>
 @endsection
