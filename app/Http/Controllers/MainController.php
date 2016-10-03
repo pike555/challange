@@ -31,15 +31,14 @@ class MainController extends Controller
       DB::table('account_role')->where('acc_id',Session::get('userid'))->delete();
       if($request->input('inputAllrole') == "on"){
         //DB::table('account_role')->where('username',Session::get('username'))->update(['role'=>'0']);
-        DB::table('account_role')->where('username',Session::get('username'))->insert(['acc_id'=>Session::get('userid'),'role_id'=>'0']);
+        DB::table('account_role')->insert(['acc_id'=>Session::get('userid'),'role_id'=>'0']);
       }else{
         //DB::table('account_role')->where('username',Session::get('username'))->insert(['role'=>implode(",",$request->input('inputRole'))]);
         foreach($request->input('inputRole') as $key => $role){
           $data[$key]["acc_id"] = Session::get('userid');
           $data[$key]["role_id"] = $role;
         }
-        //return $data;
-        DB::table('account_role')->where('acc_id',Session::get('userid'))->insert($data);
+        DB::table('account_role')->insert($data);
       }
       return redirect()->route('main');
     }

@@ -39,14 +39,14 @@
                         @foreach ($roles as $role)
                           <option value="{{$role->id}}"
                             @foreach ($selectRoles as $selectRole)
-                              {{$selectRole==$role->id?'selected':''}}
+                              {{$selectRole->role_id==$role->id?'selected':''}}
                             @endforeach
                           >{{$role->name}}</option>
                         @endforeach
                       </select>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="inputAllrole" {{$selectRoles[0]==0?'checked':''}}> All Role
+                          <input type="checkbox" name="inputAllrole" {{$selectRoles[0]->role_id==0?'checked':''}}> All Role
                         </label>
                       </div>
                     </div>
