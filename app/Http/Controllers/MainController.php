@@ -15,6 +15,6 @@ class MainController extends Controller
       return view('role')->with('navRole',true);
     }
     public function postRole(){
-      return redires()->route('main');
+      return redirect()->route('main');
     }
 }
