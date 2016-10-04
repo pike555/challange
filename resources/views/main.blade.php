@@ -9,7 +9,7 @@
               <img src="{{URL::asset('uploads').'/'.$announce->img}}" alt="100x200">
               <div class="caption">
                   <h3>{{$announce->title}}</h3>
-                  <p>{{str_limit($announce->content, $limit = 50, $end = '...')}}</p>
+                  <p>{{str_limit($announce->content, $limit = 30, $end = '...')}}</p>
               </div>
             </a>
 

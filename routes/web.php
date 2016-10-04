@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect()->route('main');
 });
 Route::any('/test','member@test')->name('test');
 Route::get('/login','member@getLogin')->name('login');
