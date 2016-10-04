@@ -12,7 +12,7 @@ use Yajra\Datatables\Facades\Datatables;
 class member extends Controller
 {
     public function test(){
-        //return view('master');
+        return view('test');
         return Session::get('userid');
         // return Datatables::of(DB::table('account'))->make(true);
     }
